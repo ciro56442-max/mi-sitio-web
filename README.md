@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIVERSO DEFINITIVO</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:black;
+    overflow-x:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+    color:white;
+}
+
+/* 🌌 FONDO ESPACIAL */
+.space{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+
+    background:
+    radial-gradient(circle at 20% 20%, rgba(120,0,255,.15), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(0,120,255,.12), transparent 35%),
+    radial-gradient(circle at 60% 40%, rgba(255,0,120,.08), transparent 30%),
+    black;
+}
+
+/* ✨ ESTRELLAS */
+.star{
+    position:absolute;
+    background:white;
+    border-radius:50%;
+    animation:twinkle infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.2;}
+    to{opacity:1;}
+}
+
+/* ☄️ NEBULOSAS */
+.nebula{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.22;
+    animation:floatNebula 25s infinite alternate ease-in-out;
+}
+
+.nebula1{
+    width:600px;
+    height:600px;
+    background:#6a00ff;
+    top:-150px;
+    left:-150px;
+}
+
+.nebula2{
+    width:700px;
+    height:700px;
+    background:#0099ff;
+    bottom:-200px;
+    right:-200px;
+}
+
+.nebula3{
+    width:500px;
+    height:500px;
+    background:#ff0066;
+    top:40%;
+    left:40%;
+}
+
+@keyframes floatNebula{
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* 🌌 GALAXIA */
+.galaxy{
+    position:absolute;
+    width:900px;
+    height:900px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,.8) 0%,
+    rgba(255,255,255,.15) 15%,
+    transparent 60%);
+
+    animation:rotateGalaxy 180s linear infinite;
+
+    opacity:.18;
+}
+
+.galaxy::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+
+    background:
+    repeating-conic-gradient(
+        rgba(255,255,255,.08) 0deg 10deg,
+        transparent 10deg 22deg
+    );
+
+    filter:blur(10px);
+}
+
+@keyframes rotateGalaxy{
+    from{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+
+    to{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+/* ☄️ METEORITOS */
+.meteor{
+    position:absolute;
+    width:250px;
+    height:3px;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,0),
+        white
+    );
+
+    border-radius:50%;
+
+    transform:rotate(-25deg);
+
+    animation:meteor linear infinite;
+}
+
+.meteor::before{
+    content:"";
+    position:absolute;
+    right:-5px;
+    top:-2px;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+    0 0 15px white,
+    0 0 30px orange;
+}
+
+.m1{
+    top:10%;
+    left:-300px;
+    animation-duration:7s;
+}
+
+.m2{
+    top:25%;
+    left:-400px;
+    animation-duration:11s;
+}
+
+.m3{
+    top:55%;
+    left:-500px;
+    animation-duration:9s;
+}
+
+.m4{
+    top:75%;
+    left:-350px;
+    animation-duration:13s;
+}
+
+@keyframes meteor{
+    from{
+        transform:
+        translateX(0)
+        translateY(0)
+        rotate(-25deg);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+        translateX(1800px)
+        translateY(700px)
+        rotate(-25deg);
+
+        opacity:0;
+    }
+}
+
+/* 🛰️ SATÉLITE */
+.satellite{
+    position:fixed;
+
+    width:70px;
+    height:24px;
+
+    top:15%;
+
+    left:-120px;
+
+    z-index:20;
+
+    animation:flySatellite 22s linear infinite;
+}
+
+.core{
+    position:absolute;
+    width:24px;
+    height:14px;
+    background:silver;
+    left:23px;
+    top:5px;
+    border-radius:3px;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,.5);
+}
+
+.panel{
+    position:absolute;
+    width:22px;
+    height:18px;
+    background:#1976d2;
+    border:1px solid #90caf9;
+}
+
+.left-panel{
+    left:0;
+    top:3px;
+}
+
+.right-panel{
+    right:0;
+    top:3px;
+}
+
+@keyframes flySatellite{
+
+    from{
+        left:-150px;
+        transform:rotate(8deg);
+    }
+
+    to{
+        left:110%;
+        transform:rotate(-8deg);
+    }
+}
+
+/* 📝 TITULO */
+.hero{
+    position:relative;
+    z-index:5;
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+}
+
+.hero h1{
+    font-size:80px;
+    letter-spacing:6px;
+
+    text-shadow:
+    0 0 20px rgba(255,255,255,.8),
+    0 0 40px rgba(0,150,255,.5);
+}
+
+.hero p{
+    margin-top:25px;
+
+    max-width:1000px;
+
+    line-height:1.8;
+
+    font-size:22px;
+
+    color:#e0e0ff;
+}
+
+/* ☀️ SISTEMA SOLAR */
+.solar-system{
+    position:relative;
+    height:1300px;
+}
+
+/* ☀️ SOL */
+.sun{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    width:170px;
+    height:170px;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,#fff7a3,#ffb300,#ff6f00,#d84315);
+
+    box-shadow:
+    0 0 60px orange,
+    0 0 130px red,
+    0 0 250px rgba(255,120,0,.5);
+
+    animation:pulse 5s infinite alternate;
+}
+
+@keyframes pulse{
+    from{
+        transform:translate(-50%,-50%) scale(1);
+    }
+
+    to{
+        transform:translate(-50%,-50%) scale(1.05);
+    }
+}
+
+/* 🪐 ORBITAS */
+.orbit{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+    transform:translate(-50%,-50%);
+
+    animation:spin linear infinite;
+}
+
+@keyframes spin{
+    from{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+
+    to{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+/* tamaños */
+.o1{width:180px;height:180px;animation-duration:5s;}
+.o2{width:260px;height:260px;animation-duration:8s;}
+.o3{width:360px;height:360px;animation-duration:12s;}
+.o4{width:470px;height:470px;animation-duration:16s;}
+.o5{width:620px;height:620px;animation-duration:24s;}
+.o6{width:780px;height:780px;animation-duration:34s;}
+.o7{width:950px;height:950px;animation-duration:44s;}
+.o8{width:1120px;height:1120px;animation-duration:60s;}
+
+/* 🪐 PLANETAS */
+.planet{
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    border-radius:50%;
+
+    box-shadow:
+    inset -8px -8px 14px rgba(0,0,0,.5),
+    inset 4px 4px 8px rgba(255,255,255,.1),
+    0 0 15px rgba(255,255,255,.08);
+}
+
+/* MERCURIO */
+.mercury{
+    width:12px;
+    height:12px;
+    left:-6px;
+    background:#9e9e9e;
+}
+
+/* VENUS */
+.venus{
+    width:22px;
+    height:22px;
+    left:-11px;
+
+    background:
+    radial-gradient(circle,#ffd180,#bf8b30,#5d3200);
+}
+
+/* TIERRA */
+.earth{
+    width:30px;
+    height:30px;
+    left:-15px;
+
+    background:
+    radial-gradient(circle,#4fc3f7,#1e88e5,#2e7d32);
+}
+
+/* MARTE */
+.mars{
+    width:20px;
+    height:20px;
+    left:-10px;
+
+    background:
+    radial-gradient(circle,#ff7043,#b71c1c,#5d1111);
+}
+
+/* JUPITER */
+.jupiter{
+    width:55px;
+    height:55px;
+    left:-27px;
+
+    background:
+    repeating-linear-gradient(
+        0deg,
+        #d7b899,
+        #d7b899 8px,
+        #8d6e63 8px,
+        #6d4c41 16px
+    );
+}
+
+/* SATURNO */
+.saturn{
+    width:50px;
+    height:50px;
+    left:-25px;
+
+    background:
+    radial-gradient(circle,#ffe0a3,#d7b899,#8d6e63);
+}
+
+.ring{
+    position:absolute;
+
+    width:120px;
+    height:30px;
+
+    border:2px solid rgba(255,255,255,.35);
+
+    border-radius:50%;
+
+    top:10px;
+    left:-35px;
+
+    transform:rotate(-20deg);
+}
+
+/* URANO */
+.uranus{
+    width:34px;
+    height:34px;
+    left:-17px;
+
+    background:
+    radial-gradient(circle,#a7ffeb,#26c6da,#006064);
+}
+
+/* NEPTUNO */
+.neptune{
+    width:34px;
+    height:34px;
+    left:-17px;
+
+    background:
+    radial-gradient(circle,#8c9eff,#3949ab,#1a237e);
+}
+
+/* 🌙 LUNAS */
+.moon-orbit{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    animation:moonSpin linear infinite;
+}
+
+.moon{
+    position:absolute;
+
+    top:-4px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,#f5f5f5,#cfcfcf,#8d8d8d);
+
+    box-shadow:
+    inset -2px -2px 4px rgba(0,0,0,.5),
+    0 0 8px rgba(255,255,255,.4);
+}
+
+@keyframes moonSpin{
+    from{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+
+    to{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+/* 📚 INFOGRAFIA */
+.info-section{
+    position:relative;
+    z-index:5;
+
+    width:100%;
+
+    padding:120px 8%;
+}
+
+.card{
+    background:rgba(0,0,0,.45);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    margin-bottom:50px;
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,.4);
+}
+
+.card h2{
+    font-size:42px;
+
+    margin-bottom:25px;
+
+    color:#90caf9;
+}
+
+.card p{
+    line-height:2;
+    font-size:18px;
+    color:#f1f1f1;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:80px 20px;
+    font-size:18px;
+    color:#aaa;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🌌 FONDO -->
+<div class="space">
+
+    <div class="nebula nebula1"></div>
+    <div class="nebula nebula2"></div>
+    <div class="nebula nebula3"></div>
+
+    <div class="galaxy"></div>
+
+</div>
+
+<!-- ✨ ESTRELLAS -->
+<script>
+
+for(let i=0;i<700;i++){
+
+    let star=document.createElement("div");
+
+    star.className="star";
+
+    let size=Math.random()*3;
+
+    star.style.width=size+"px";
+    star.style.height=size+"px";
+
+    star.style.top=Math.random()*100+"%";
+    star.style.left=Math.random()*100+"%";
+
+    star.style.animationDuration=
+    (Math.random()*4+2)+"s";
+
+    document.body.appendChild(star);
+}
+
+</script>
+
+<!-- ☄️ METEORITOS -->
+<div class="meteor m1"></div>
+<div class="meteor m2"></div>
+<div class="meteor m3"></div>
+<div class="meteor m4"></div>
+
+<!-- 🛰️ SATELITE -->
+<div class="satellite">
+
+    <div class="panel left-panel"></div>
+
+    <div class="core"></div>
+
+    <div class="panel right-panel"></div>
+
+</div>
+
+<!-- 📝 HERO -->
+<section class="hero">
+
+    <h1>EL UNIVERSO</h1>
+
+    <p>
+    Empezando por el origen del universo, seguimos su evolución hasta el día de hoy, recorriendo todo lo que ha ido apareciendo en el camino: galaxias, estrellas, planetas y otros cuerpos que forman parte de esta enorme estructura en constante cambio. 
+
+Ciro Arturo Garcia Montes de Oca 2N
+    </p>
+
+</section>
+
+<!-- ☀️ SISTEMA SOLAR -->
+<section class="solar-system">
+
+<div class="sun"></div>
+
+<!-- MERCURIO -->
+<div class="orbit o1">
+    <div class="planet mercury"></div>
+</div>
+
+<!-- VENUS -->
+<div class="orbit o2">
+    <div class="planet venus"></div>
+</div>
+
+<!-- TIERRA -->
+<div class="orbit o3">
+    <div class="planet earth">
+
+        <div class="moon-orbit"
+        style="width:55px;height:55px;animation-duration:5s;">
+
+            <div class="moon"
+            style="width:7px;height:7px;"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- MARTE -->
+<div class="orbit o4">
+    <div class="planet mars">
+
+        <div class="moon-orbit"
+        style="width:40px;height:40px;animation-duration:4s;">
+
+            <div class="moon"
+            style="width:5px;height:5px;"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- JUPITER -->
+<div class="orbit o5">
+    <div class="planet jupiter">
+
+        <div class="moon-orbit"
+        style="width:100px;height:100px;animation-duration:8s;">
+
+            <div class="moon"
+            style="width:8px;height:8px;"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- SATURNO -->
+<div class="orbit o6">
+    <div class="planet saturn">
+
+        <div class="ring"></div>
+
+        <div class="moon-orbit"
+        style="width:90px;height:90px;animation-duration:8s;">
+
+            <div class="moon"
+            style="width:7px;height:7px;"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- URANO -->
+<div class="orbit o7">
+    <div class="planet uranus">
+
+        <div class="moon-orbit"
+        style="width:75px;height:75px;animation-duration:7s;">
+
+            <div class="moon"
+            style="width:6px;height:6px;"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- NEPTUNO -->
+<div class="orbit o8">
+    <div class="planet neptune">
+
+        <div class="moon-orbit"
+        style="width:80px;height:80px;animation-duration:9s;">
+
+            <div class="moon"
+            style="width:6px;height:6px;"></div>
+
+        </div>
+
+    </div>
+</div>
+
+</section>
+
+<!-- 📚 INFOGRAFIA GIGANTE -->
+<section class="info-section">
+
+    <div class="card">
+
+        <h2>🌌 ¿Qué es el Universo?</h2>
+
+        <p>
+        El universo es absolutamente todo lo que existe:
+materia, energía, espacio y tiempo.
+Contiene miles de millones de galaxias,
+cada una con miles de millones de estrellas,
+planetas, nebulosas, cúmulos estelares y regiones de gas y polvo
+que se extienden a escalas casi incomprensibles.
+
+El universo observable tiene un diámetro
+aproximado de más de 93 mil millones de años luz,
+lo que significa que solo podemos ver una pequeña parte de su totalidad,
+ya que la luz de las regiones más lejanas aún no ha tenido tiempo de alcanzarnos.
+
+Los científicos creen que comenzó hace unos
+13.800 millones de años con el Big Bang,
+un evento de expansión extremadamente rápido que dio origen al espacio,
+al tiempo y a toda la materia que conocemos hoy.
+
+Desde entonces, el universo no ha dejado de expandirse,
+formando estructuras cada vez más complejas como galaxias,
+supercúmulos y filamentos cósmicos que conectan la materia a gran escala.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>⭐ Las Estrellas</h2>
+
+        <p>
+        Las estrellas son enormes esferas de plasma
+extremadamente caliente.
+Generan energía mediante reacciones nucleares en sus núcleos,
+donde la presión y la temperatura alcanzan valores tan extremos
+que permiten la fusión de elementos como el hidrógeno y el helio.
+
+Nuestro Sol es una estrella mediana,
+pero existen estrellas gigantescas
+capaces de ser millones de veces más brillantes y mucho más masivas,
+con tamaños tan enormes que podrían engullir sistemas planetarios completos.
+
+A lo largo de su vida, las estrellas pasan por diferentes etapas,
+desde su formación en nebulosas de gas y polvo
+hasta su fase final, que depende de su masa.
+
+Algunas estrellas terminan explotando
+como supernovas, liberando una cantidad inmensa de energía
+que puede iluminar galaxias enteras durante un corto periodo de tiempo.
+Estas explosiones pueden dar origen a agujeros negros,
+o a estrellas de neutrones, objetos extremadamente densos
+donde la materia se comporta de formas aún no completamente comprendidas.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>🌍 El Sistema Solar</h2>
+
+        <p>
+        El Sistema Solar está formado por el Sol,
+ocho planetas principales, lunas,
+cinturones de asteroides, cometas y polvo cósmico
+que orbitan de forma estable alrededor de nuestra estrella.
+
+Mercurio es el planeta más cercano al Sol,
+con temperaturas extremas debido a la intensa radiación solar,
+mientras que Neptuno es el más lejano,
+un mundo frío y azulado con vientos extremadamente rápidos
+que recorren su atmósfera a velocidades increíbles.
+
+Júpiter es el gigante gaseoso más grande del Sistema Solar,
+con una masa tan enorme que podría contener a todos los demás planetas combinados,
+y además posee una gran cantidad de lunas y una famosa tormenta llamada la Gran Mancha Roja
+que lleva activa cientos de años.
+
+Saturno destaca por sus enormes anillos,
+formados por hielo, polvo y fragmentos de roca,
+que lo convierten en uno de los planetas más visualmente impresionantes del sistema.
+
+La Tierra es el único planeta conocido
+con vida confirmada, gracias a la presencia de agua líquida,
+una atmósfera equilibrada y condiciones ideales para el desarrollo de organismos vivos.
+También cuenta con una gran diversidad de ecosistemas que la hacen única en el universo conocido.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>🌀 Galaxias</h2>
+
+        <p>
+        Las galaxias son estructuras gigantescasformadas por estrellas, gas, polvo y materia oscuraque se mantienen unidas gracias a la gravedad.La Vía Láctea es la galaxia donde vivimos,un vasto sistema espiral que contiene cientos de miles de millones de estrellas,incluido nuestro propio Sistema Solar,situado en uno de sus brazos exteriores.Algunas galaxias tienen forma espiral,con brazos que giran alrededor de un núcleo brillante,otras son elípticas, con formas más redondeadas y antiguas,y algunas son irregulares, sin una estructura definida,a menudo deformadas por colisiones con otras galaxias.En el centro de muchas galaxiasexiste un agujero negro supermasivo,cuyo campo gravitatorio es tan intenso que influye en el movimiento de millones de estrellasy puede liberar enormes cantidades de energía cuando absorbe materia.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>☄️ Meteoritos y Cometas</h2>
+
+        <p>
+        Los meteoritos son fragmentos de roca espacial
+que provienen de asteroides, cometas o restos de formaciones planetarias antiguas,
+y que atraviesan la atmósfera terrestre a gran velocidad.
+Cuando entran en contacto con el aire, se calientan intensamente,
+produciendo el fenómeno luminoso conocido como estrella fugaz,
+y en algunos casos logran impactar la superficie del planeta.
+
+Los cometas contienen hielo, polvo y compuestos orgánicos,
+y suelen provenir de las regiones más lejanas del Sistema Solar.
+Cuando se acercan al Sol, el calor provoca que el hielo se sublime,
+formando enormes colas brillantes que pueden extenderse millones de kilómetros
+y que siempre apuntan en dirección opuesta al Sol debido al viento solar.
+
+Estos objetos viajan a velocidades increíbles
+por el espacio profundo, cruzando órbitas planetarias y regiones vacías del cosmos,
+y representan restos primitivos de la formación del Sistema Solar,
+lo que los convierte en piezas clave para comprender su origen y evolución.
+        </p>
+
+    </div>
+
+</section>
+
+<div class="card">
+
+    <h2>🧭 El universo observable</h2>
+
+    <p>
+    El universo observable es la parte del cosmos que podemos ver desde la Tierra,
+    limitada por la distancia que la luz ha podido recorrer desde el inicio del universo.
+    Todo lo que está dentro de este límite puede ser estudiado mediante telescopios,
+    radiación electromagnética y diferentes tipos de observación astronómica.
+
+    Sin embargo, más allá de este límite existe una región mucho más grande que no podemos observar directamente,
+    no porque no exista, sino porque la luz de esas zonas aún no ha tenido tiempo suficiente para llegar hasta nosotros.
+    Esto significa que el universo observable no es el universo completo, sino solo una pequeña parte de él.
+
+    A medida que el universo se expande, este límite también cambia con el tiempo,
+    lo que hace que la “zona visible” desde nuestra perspectiva aumente lentamente.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>🔭 Telescopios y observación del espacio</h2>
+
+    <p>
+    Los telescopios son instrumentos fundamentales para el estudio del universo,
+    ya que permiten captar la luz de objetos extremadamente lejanos que el ojo humano no puede ver.
+
+    Gracias a ellos, podemos observar galaxias formadas hace miles de millones de años,
+    estrellas en proceso de nacimiento y fenómenos cósmicos que ocurrieron en las primeras etapas del universo.
+
+    Existen telescopios en la Tierra y también en el espacio, como los que orbitan fuera de la atmósfera,
+    lo que permite obtener imágenes más claras al evitar la distorsión del aire terrestre.
+
+    En esencia, cada observación astronómica es también una mirada al pasado,
+    porque la luz que llega hasta nosotros ha viajado durante enormes períodos de tiempo.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>🌠 Nebulosas</h2>
+
+    <p>
+    Las nebulosas son enormes regiones del espacio formadas por gas y polvo cósmico ☁️,
+    que pueden extenderse a lo largo de cientos de años luz.
+
+    Algunas nebulosas son conocidas como “guarderías estelares”,
+    ya que en su interior se forman nuevas estrellas a partir del colapso de la materia por gravedad.
+
+    Otras nebulosas son el resultado de la muerte de estrellas masivas,
+    que expulsan sus capas externas al espacio en explosiones violentas,
+    enriqueciendo el entorno con nuevos elementos químicos.
+
+    Con el paso del tiempo, estas estructuras cambian lentamente,
+    dando lugar a nuevas generaciones de estrellas y sistemas planetarios.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>🛰️ Satélites naturales y artificiales</h2>
+
+    <p>
+    Los satélites naturales son cuerpos celestes que orbitan planetas debido a la gravedad,
+    como la Luna en el caso de la Tierra.
+
+    Estos satélites influyen en fenómenos importantes como las mareas
+    y pueden estabilizar la rotación de los planetas a lo largo del tiempo.
+
+    Por otro lado, los satélites artificiales son construidos por el ser humano
+    y enviados al espacio para cumplir funciones tecnológicas y científicas.
+
+    Se utilizan para comunicación global, navegación GPS, observación meteorológica
+    y exploración del espacio profundo, convirtiéndose en una parte esencial de la tecnología moderna.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <h2>🌌 Vacío interestelar</h2>
+
+    <p>
+    El espacio entre las estrellas no está completamente vacío,
+    sino que contiene una cantidad extremadamente pequeña de materia dispersa.
+
+    Este medio interestelar está compuesto por gas, polvo cósmico, radiación y partículas cargadas,
+    aunque su densidad es tan baja que en la práctica parece un vacío absoluto.
+
+    A pesar de ello, este entorno juega un papel importante en la evolución de las galaxias,
+    ya que en estas regiones se pueden formar nuevas estrellas cuando la materia se concentra lo suficiente.
+
+    También es un medio por el que viajan ondas de energía y partículas de alta velocidad,
+    conectando diferentes regiones del universo de forma invisible.
+    </p>
+
+</div>
+
+<div class="card">    <h2>🌌 Galaxia espiral</h2>    <img src="galaxia.jpg" alt="Galaxia espiral" style="        width:100%;        max-width:800px;        display:block;        margin:20px auto;        border-radius:15px;        box-shadow:0 0 35px rgba(255,255,255,0.2);    ">    <p>    Una galaxia espiral es una enorme estructura formada por miles de millones de estrellas,    gas y polvo que giran alrededor de un núcleo central.    Sus brazos contienen regiones donde nacen nuevas estrellas,    lo que la convierte en una de las formas más comunes y espectaculares del universo.    </p></div>
+
+
+<div class="card">    <h2>🕳️ Agujero negro</h2>    <img src="agujeronegro.jpg" alt="Agujero negro" style="        width:100%;        max-width:800px;        display:block;        margin:20px auto;        border-radius:15px;        box-shadow:0 0 40px rgba(0,0,0,0.8);    ">    <p>    Un agujero negro es una región del espacio donde la gravedad es tan intensa    que nada puede escapar, ni siquiera la luz.    Se forma cuando una estrella muy masiva colapsa al final de su vida,    creando un objeto extremadamente denso y misterioso.    </p></div>
+
+
+<div class="card">    <h2>☁️ Nebulosa</h2>    <img src="nebulosa.jpg" alt="Nebulosa" style="        width:100%;        max-width:800px;        display:block;        margin:20px auto;        border-radius:15px;        box-shadow:0 0 35px rgba(100,150,255,0.3);    ">    <p>    Una nebulosa es una enorme nube de gas y polvo en el espacio,    donde nacen nuevas estrellas o donde quedan restos de estrellas antiguas.    Con el tiempo, estas regiones cambian y dan origen a nuevos sistemas estelares.    </p></div>
+
+
+<div class="footer">
+🌌 FIN DEL VIAJE 🌌
+</div>
+
+</body>
+</html>
